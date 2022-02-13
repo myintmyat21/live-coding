@@ -75,7 +75,7 @@ const PageCheckout: FC<InterfaceCheckoutProps> = ({
     const onSubmit = (values: TypeCheckoutFormValues) => {
         toast.promise(
             post({
-                requestId: `${Math.floor(10000000 + Math.random() * 90000000)}`,
+                requestId: `${Math.floor(10000000 + Math.random() * 90000000)}`, // generate 8 random numbers
                 paymentInfo: {
                     cardInfo: {
                         cardNo: `${values.card_number}`,
