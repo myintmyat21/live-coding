@@ -131,7 +131,7 @@ export const postPayment = () => {
                 .then((data = defaultState.data) => {
                     setState((old: any) => ({
                         ...old,
-                        data: data.data.products,
+                        data: data.data,
                     }))
                 })
                 // Error
