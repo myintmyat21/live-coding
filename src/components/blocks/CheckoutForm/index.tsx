@@ -30,11 +30,13 @@ import {
     FieldGroups,
     FieldsMerge,
     Button,
-    IconList
+    IconList,
+    IconContainer
 } from "./index.styled"
 
 // Svg Icons
-import { ReactComponent as IconCards } from "@components/svgs/cards.svg"
+import { ReactComponent as IconMasterCard } from "@components/svgs/mastercard.svg"
+import { ReactComponent as IconVisaCard } from "@components/svgs/visaCard.svg"
 import { ReactComponent as IconCVV } from "@components/svgs/cvv.svg"
 
 type TypeCheckoutFormDefaultValues = {
@@ -64,6 +66,7 @@ const CheckoutForm: FC<CheckoutFormProps> = ({
     loading = false,
     submitText = "Submit",
 }) => {
+    const [cardType, setCardType] = React.useState("")
     const { models, register, updateModel } =
         useModels<TypeCheckoutFormDefaultValues>({
             defaultState,
@@ -145,7 +148,7 @@ const CheckoutForm: FC<CheckoutFormProps> = ({
 
     const onSubmit = (e: SyntheticEvent) => {
         e.preventDefault()
-
+        setCardType(parseCardType(state.$data.card_number))
         onSuccess(state.$data)
     }
 
@@ -196,7 +199,8 @@ const CheckoutForm: FC<CheckoutFormProps> = ({
                                 Card information
                             </FieldLabel>
                             <IconList>
-                                <IconCards />
+                                <IconVisaCard style={{ opacity: cardType === "visa" ? 1 : 0.5 }} />
+                                <IconMasterCard style={{ opacity: cardType === "mastercard" ? 1 : 0.5 }} />
                             </IconList>
                             <Input
                                 {...register.input({

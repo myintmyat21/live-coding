@@ -96,6 +96,10 @@ export const Button = styled.button`
     &:disabled {
        opacity: 0.5;
     }
+    &:hover:not(:disabled) {
+        background-color: #fff;
+        color: var(--dorminant_1);
+    }
 `
 
 export const ErrorMessage = styled.div`
@@ -118,6 +122,8 @@ export const IconList = styled.div`
     margin-bottom: 13px;
     margin-right: 7px;
 `
+
+export const IconContainer = styled.div``
 
 export const Fields = styled.article.attrs(() => ({ className: "fields" }))`
     position: relative;
